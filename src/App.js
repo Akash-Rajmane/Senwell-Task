@@ -124,9 +124,6 @@ export default function App() {
 
   const dataArr = freqCounter(data);
 
-  let ans = document.querySelectorAll("row");
-  console.log(ans.forEach((el) => el));
-
   return (
     <div className="App">
       <table>
