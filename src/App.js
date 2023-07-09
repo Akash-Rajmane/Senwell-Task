@@ -107,16 +107,15 @@ export default function App() {
     const obj = {};
 
     for (let i = 0; i < arr.length; i++) {
-      let el = JSON.stringify(arr[i]);
+      let el = arr[i].name;
       obj[el] ? (obj[el] += 1) : (obj[el] = 1);
     }
 
     let countArr = Object.values(obj);
     let nameArr = Object.keys(obj);
     let newArr = [];
-    let newNameArr = nameArr.map((el) => el.split(":")[1].replace("}", ""));
-    for (let i = 0; i < newNameArr.length; i++) {
-      newArr.push([newNameArr[i], countArr[i]]);
+    for (let i = 0; i < nameArr.length; i++) {
+      newArr.push({ name: nameArr[i], count: countArr[i] });
     }
 
     return newArr;
@@ -135,7 +134,7 @@ export default function App() {
         </thead>
         <tbody>
           {dataArr.map((el, id) => {
-            let count = el[1];
+            let { name, count } = el;
             let styles;
             if (count > 2 && count < 10) {
               styles = { backgroundColor: "yellow" };
@@ -147,8 +146,8 @@ export default function App() {
 
             return (
               <tr style={styles} key={id}>
-                <td>{JSON.parse(el[0])}</td>
-                <td>{el[1]}</td>
+                <td>{name}</td>
+                <td>{count}</td>
               </tr>
             );
           })}
